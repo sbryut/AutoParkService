@@ -1,0 +1,4 @@
+.env
+*.env
+.idea/
+/build/docker/postgres/data/
