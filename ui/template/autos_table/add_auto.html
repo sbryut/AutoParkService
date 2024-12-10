@@ -1,0 +1,24 @@
+{{define "content"}}
+    <div class="form-container">
+        <form action="/autos" method="POST" class="common-form">
+            <h2>{{.Title}}</h2>
+            <label for="num">Госномер:</label>
+            <input type="text" id="num" name="num" required>
+            <br>
+            <label for="color">Цвет:</label>
+            <input type="text" id="color" name="color" required>
+            <br>
+            <label for="mark">Марка:</label>
+            <input type="text" id="mark" name="mark" required>
+            <br>
+            <label for="driver_id">Водитель:</label>
+            <select id="driver_id" name="driver_id" required>
+                {{range .Drivers}}
+                    <option value="{{.ID}}">{{.LastName}} {{.FirstName}} {{.FatherName}}</option>
+                {{end}}
+            </select>
+            <br>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+{{end}}

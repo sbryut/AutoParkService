@@ -1,0 +1,39 @@
+body {
+    font-family: 'Avantgarde', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+    background-image: url('images/car.png');
+    background-size: 30% auto;
+    background-position: center 250px;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    color: #F5F5F5;
+    font-size: 48px;
+}
+
+h2 {
+    color: #333;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    background-position: center;
+    color: #333;
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-left: 450px;
+}
+
+a {
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #AFDAFC;
+}

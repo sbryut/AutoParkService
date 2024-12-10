@@ -1,0 +1,117 @@
+{{define "content"}}
+    <div class="statistics-container">
+        <h2>Статистика: количество машин на маршрутах за все время</h2>
+
+        <div class="chart-wrapper">
+            <canvas id="routesVehicleChart"></canvas>
+        </div>
+
+        <table class="statistics-table">
+            <thead>
+            <tr>
+                <th>Маршрут</th>
+                <th>Количество машин</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range .RoutesVehicleCount}}
+                <tr>
+                    <td>{{.RouteName}}</td>
+                    <td>{{.VehicleCount}}</td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var routesData = [
+                {{range .RoutesVehicleCount}}
+                {
+                    route_name: "{{.RouteName}}",
+                    vehicle_count: {{.VehicleCount}}
+                },
+                {{end}}
+            ];
+
+            var ctx = document.getElementById('routesVehicleChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: routesData.map(item => item.route_name),
+                    datasets: [{
+                        label: 'Количество машин на маршруте',
+                        data: routesData.map(item => item.vehicle_count),
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(231, 111, 81, 0.6)',
+                            'rgba(153, 102, 255, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(231, 111, 81, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Количество машин'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Маршруты'
+                            }
+                        }
+                    },
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .statistics-container {
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+
+        .chart-wrapper {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .statistics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .statistics-table th,
+        .statistics-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .statistics-table thead {
+            background-color: #f2f2f2;
+        }
+    </style>
+{{end}}

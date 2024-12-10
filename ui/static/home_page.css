@@ -1,0 +1,128 @@
+body {
+    font-family: 'Avantgarde', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    background-image: url('images/image_for_home_page.jpg');
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.container {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.form-container {
+    background-color: rgba(240, 240, 240, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+.welcome-message {
+    color: #F5F5F5;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    text-shadow: 3px 3px 5px rgba(30, 36, 96, 1.0);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 0;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #263f69;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #263f69;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #673923;
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.auth-buttons button {
+    width: 48%;
+    padding: 12px;
+}
+
+.login-btn {
+    background-color: #263f69;
+}
+
+.register-btn {
+    background-color: #B22222;
+}
+
+.form-container a {
+    color: #263f69;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.form-container a:hover {
+    color: #673923;
+    text-decoration: underline;
+}
+
+.form-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}

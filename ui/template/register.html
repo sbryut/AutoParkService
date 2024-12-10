@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/static/home_page.css"/>
+</head>
+<body>
+<div class="container">
+    <h2 class="welcome-message">РЕГИСТРАЦИЯ В СИСТЕМЕ УПРАВЛЕНИЯ АВТОПАРКОМ</h2>
+    <div class="form-container">
+        <h1>Создание аккаунта</h1>
+        <form method="POST" action="/register">
+            <div class="input-group">
+                <label for="username">Логин:</label>
+                <input type="text" id="username" name="username" required minlength="3" maxlength="50">
+            </div>
+            <div class="input-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required minlength="6">
+            </div>
+            <div class="input-group">
+                <label for="confirm_password">Подтверждение пароля:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="/" >Войти</a></p>
+    </div>
+</div>
+</body>
+</html>

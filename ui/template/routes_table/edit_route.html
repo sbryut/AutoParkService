@@ -1,0 +1,15 @@
+{{define "content"}}
+    <div class="form-container">
+        <form action="/routes/{{.Route.ID}}" method="POST" class="common-form">
+            <input type="hidden" name="_method" value="PUT">
+            <h2>{{.Title}}</h2>
+            <label for="start_point">Отправная точка:</label>
+            <input type="text" id="start_point" name="start_point" value="{{.Route.StartPoint}}" required>
+            <br>
+            <label for="end_point">Конечная остановка:</label>
+            <input type="text" id="end_point" name="end_point" value="{{.Route.EndPoint}}" required>
+            <br>
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+{{end}}

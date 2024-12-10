@@ -1,0 +1,34 @@
+{{define "content"}}
+    <div class="form-container">
+        <form action="/autos/{{.Car.ID}}" method="POST" class="common-form">
+            <input type="hidden" name="_method" value="PUT">
+            <h2>Редактирование автомобиля</h2>
+
+            <label for="num">Номер автомобиля:</label>
+            <input type="text" id="num" name="num" value="{{.Car.Num}}" required>
+            <br>
+
+            <label for="color">Цвет:</label>
+            <input type="text" id="color" name="color" value="{{.Car.Color}}" required>
+            <br>
+
+            <label for="mark">Марка:</label>
+            <input type="text" id="mark" name="mark" value="{{.Car.Mark}}" required>
+            <br>
+
+            <label for="personal_id">Водитель:</label>
+            <select id="personal_id" name="personal_id" required>
+                {{range .Drivers}}
+                    <option value="{{.ID}}" {{if eq .ID $.Car.PersonalID}}selected{{end}}>
+                        {{.LastName}} {{.FirstName}} {{.FatherName}}
+                    </option>
+                {{else}}
+                    <option>Нет доступных водителей</option>
+                {{end}}
+            </select>
+            <br>
+
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+{{end}}

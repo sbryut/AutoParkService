@@ -1,0 +1,39 @@
+{{define "content"}}
+    <h2>{{.Title}}</h2>
+    {{if eq .UserRole "admin"}}
+        <a href="/drivers/new" class="btn">Добавить водителя</a>
+    {{end}}
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Фамилия</th>
+            {{if eq .UserRole "admin"}}
+                <th>Действия</th>
+            {{end}}
+        </tr>
+        </thead>
+        <tbody>
+        {{range .Drivers}}
+            <tr>
+                <td>{{.FirstName}}</td>
+                <td>{{.FatherName}}</td>
+                <td>{{.LastName}}</td>
+                {{if eq $.UserRole "admin"}}
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/drivers/{{.ID}}/edit" class="btn">Редактировать</a>
+                            <form action="/drivers/{{.ID}}/delete" method="POST" style="display:inline;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="id" value="{{.ID}}">
+                                <button type="submit" class="btn" style="background-color: #dc3545;">Удалить</button>
+                            </form>
+                        </div>
+                    </td>
+                {{end}}
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+{{end}}

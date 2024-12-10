@@ -1,0 +1,23 @@
+{{define "content"}}
+    <div class="form-container">
+        <form action="/drivers/{{.Driver.ID}}" method="POST" class="common-form">
+            <input type="hidden" name="_method" value="PUT">
+
+            <h2>{{.Title}}</h2>
+
+            <label for="first_name">Имя:</label>
+            <input type="text" id="first_name" name="first_name" value="{{.Driver.FirstName}}" required>
+            <br>
+
+            <label for="last_name">Фамилия:</label>
+            <input type="text" id="last_name" name="last_name" value="{{.Driver.LastName}}" required>
+            <br>
+
+            <label for="father_name">Отчество:</label>
+            <input type="text" id="father_name" name="father_name" value="{{.Driver.FatherName}}" required>
+            <br>
+
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+{{end}}

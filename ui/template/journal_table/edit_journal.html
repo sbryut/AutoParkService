@@ -1,0 +1,13 @@
+{{define "content"}}
+    <div class="form-container">
+        <form action="/journal/{{.Entry.JournalID}}/update" method="post" class="common-form">
+            <h2>{{.Title}}</h2>
+            <div>
+                <label for="time_in">Время прибытия:</label>
+                <input type="datetime-local" id="time_in" name="time_in" value="{{.TimeOut}}" required>
+            </div>
+            <button type="submit">Сохранить изменения</button>
+            <a href="/journal" class="btn btn-cancel">Отмена</a>
+        </form>
+    </div>
+{{end}}

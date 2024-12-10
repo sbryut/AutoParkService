@@ -1,0 +1,43 @@
+{{define "content"}}
+    <h2>{{.Title}}</h2>
+    {{if eq .UserRole "admin"}}
+        <a href="/routes/new" class="btn">Добавить маршрут</a>
+    {{end}}
+    <table>
+        <thead>
+        <tr>
+            <th>Отправная точка</th>
+            <th>Конечная остановка</th>
+            {{if eq .UserRole "admin"}}
+                <th>Действия</th>
+            {{end}}
+        </tr>
+        </thead>
+        <tbody>
+        {{if .Routes}}
+            {{range .Routes}}
+                <tr>
+                    <td>{{.StartPoint}}</td>
+                    <td>{{.EndPoint}}</td>
+                    {{if eq $.UserRole "admin"}}
+                        <td>
+                            <div class="action-buttons">
+                                <a href="/routes/{{.ID}}/edit" class="btn">Редактировать</a>
+                                <form action="/routes/{{.ID}}/delete" method="POST" style="display:inline;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="id" value="{{.ID}}">
+                                    <button type="submit" class="btn" style="background-color: #dc3545;">Удалить</button>
+                                </form>
+                            </div>
+                        </td>
+                    {{end}}
+                </tr>
+            {{end}}
+        {{else}}
+            <tr>
+                <td colspan="3">Нет данных для отображения</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+{{end}}

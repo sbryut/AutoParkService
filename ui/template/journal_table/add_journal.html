@@ -1,0 +1,59 @@
+{{define "content"}}
+    <div class="form-container">
+        <form id="addJournalEntryForm" action="/journal" method="POST" class="common-form">
+            <h2>{{.Title}}</h2>
+            <div>
+                <label for="driver">Выберите водителя:</label>
+                <select id="driver" name="driver_id" required>
+                    <option value="">-- Выберите водителя --</option>
+                    {{range .Drivers}}
+                        <option value="{{.ID}}">{{.LastName}} {{.FirstName}} {{.FatherName}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div>
+                <label for="auto">Выберите автомобиль:</label>
+                <select id="auto" name="auto_id" required disabled>
+                    <option value="">-- Сначала выберите водителя --</option>
+                </select>
+            </div>
+            <div>
+                <label for="route">Выберите маршрут:</label>
+                <select id="route" name="route_id" required>
+                    <option value="">-- Выберите маршрут --</option>
+                    {{range .Routes}}
+                        <option value="{{.ID}}">{{.StartPoint}} - {{.EndPoint}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div>
+                <label for="time_out">Время отправления:</label>
+                <input type="datetime-local" id="time_out" name="time_out" required>
+            </div>
+            <button type="submit" class="btn">Добавить запись</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('driver').addEventListener('change', function() {
+            const driverId = this.value;
+            const autoSelect = document.getElementById('auto');
+            const driversAutos = {{.DriversAutos}};
+
+            autoSelect.innerHTML = '<option value="">-- Выберите автомобиль --</option>';
+
+            if (driverId && driversAutos[driverId]) {
+                driversAutos[driverId].forEach(auto => {
+                    const option = document.createElement('option');
+                    option.value = auto.ID;
+                    option.textContent = `${auto.Num} (${auto.Mark})`;
+                    autoSelect.appendChild(option);
+                });
+                autoSelect.disabled = false;
+            } else {
+                autoSelect.innerHTML = '<option value="">-- Сначала выберите водителя --</option>';
+                autoSelect.disabled = true;
+            }
+        });
+    </script>
+{{end}}

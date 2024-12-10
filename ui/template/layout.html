@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/style_header.css">
+    <link rel="stylesheet" href="/static/style_tables.css">
+    <link rel="stylesheet" href="/static/style_general.css">
+    <link rel="stylesheet" href="/static/style_dashboard.css">
+    <link rel="stylesheet" href="/static/style_buttons.css">
+    <link rel="stylesheet" href="/static/style_forms.css">
+</head>
+<body>
+<header>
+    <h1>СИСТЕМА УПРАВЛЕНИЯ АВТОПАРКОМ</h1>
+    <div class="header-profile">
+        <div class="user-info">
+            <span class="username">{{.Username}}</span>
+            <a href="/" class="logout-link" style="color: #AFDAFC;">Выйти</a>
+        </div>
+    </div>
+</header>
+<nav>
+    <ul>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Справочники</a>
+            <ul class="dropdown-menu">
+                <li><a href="/drivers">Водители</a></li>
+                <li><a href="/autos">Автомобили</a></li>
+                <li><a href="/routes">Маршруты</a></li>
+            </ul>
+        </li>
+        <li><a href="/journal">Журнал</a></li>
+        <li><a href="/statistics">Отчеты</a></li>
+    </ul>
+</nav>
+<main>
+    {{block "content" .}}{{end}}
+</main>
+<script src="/static/main.js"></script>
+</body>
+</html>

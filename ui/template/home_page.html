@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в автопарк</title>
+    <link rel="stylesheet" href="/static/home_page.css"/>
+</head>
+<body>
+<div class="container">
+    <h2 class="welcome-message">ДОБРО ПОЖАЛОВАТЬ В СИСТЕМУ УПРАВЛЕНИЯ АВТОПАРКОМ!</h2>
+    <div class="form-container">
+        <h1>АВТОРИЗАЦИЯ</h1>
+        <form method="POST" action="/login">
+            <div class="input-group">
+                <label for="username">Логин:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="auth-buttons">
+                <button type="submit" class="login-btn">Войти</button>
+                <button type="button" class="register-btn" onclick="window.location.href='/register'">Регистрация</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

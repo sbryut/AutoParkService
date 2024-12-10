@@ -1,0 +1,85 @@
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.header-profile {
+    position: absolute;
+    color: white;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #333;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    transition: background-color 0.3s ease;
+}
+
+/* Стили для выпадающего меню */
+nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+    padding: 0;
+}
+
+nav .dropdown-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+nav .dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+nav .dropdown-menu li a:hover {
+    background-color: #AFDAFC;
+    text-decoration: none;
+}
+
+nav ul li:hover .dropdown-menu {
+    display: block;
+}
+
+

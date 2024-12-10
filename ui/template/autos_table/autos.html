@@ -1,0 +1,47 @@
+{{define "content"}}
+    <h2>{{.Title}}</h2>
+    {{if eq .UserRole "admin"}}
+        <a href="/autos/new" class="btn">Добавить автомобиль</a>
+    {{end}}
+    <table>
+        <thead>
+        <tr>
+            <th>Госномер</th>
+            <th>Цвет</th>
+            <th>Марка</th>
+            <th>Водитель</th>
+            {{if eq $.UserRole "admin"}}
+                <th>Действия</th>
+            {{end}}
+        </tr>
+        </thead>
+        <tbody>
+        {{if .Autos}}
+            {{range .Autos}}
+                <tr>
+                <td>{{.Num}}</td>
+                <td>{{.Color}}</td>
+                <td>{{.Mark}}</td>
+                <td>{{.DriverFullName}}</td>
+                {{if eq $.UserRole "admin"}}
+                <td>
+                    <div class="action-buttons">
+                        <a href="/autos/{{.ID}}/edit" class="btn">Редактировать</a>
+                        <form action="/autos/{{.ID}}/delete" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="id" value="{{.ID}}">
+                            <button type="submit" class="btn" style="background-color: #dc3545;">Удалить</button>
+                        </form>
+                    </div>
+                </td>
+                {{end}}
+            </tr>
+            {{end}}
+        {{else}}
+            <tr>
+                <td colspan="3">Нет данных для отображения</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+{{end}}

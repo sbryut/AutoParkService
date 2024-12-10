@@ -1,0 +1,90 @@
+{{define "content"}}
+    <h2>{{.Title}}</h2>
+    {{if eq .UserRole "admin"}}
+        <a href="/journal/new" class="btn">Добавить запись</a>
+        <a href="/download" class="btn">Скачать</a>
+    {{end}}
+    <table id="journalTable">
+        <thead>
+        <tr>
+            <th>Маршрут</th>
+            <th>Автомобиль</th>
+            <th>Водитель</th>
+            <th>Время отправления</th>
+            <th>Время прибытия</th>
+            {{if eq .UserRole "admin"}}
+                <th>Действия</th>
+            {{end}}
+        </tr>
+        </thead>
+        <tbody>
+        {{if .Entries}}
+            {{range .Entries}}
+                <tr data-journal-id="{{.JournalID}}">
+                    <td>{{.StartPoint}} - {{.EndPoint}}</td>
+                    <td>{{.AutoNumber}} ({{.AutoMark}})</td>
+                    <td>{{.DriverName}}</td>
+                    <td>{{.TimeOut}}</td>
+                    <td>{{if .TimeIn}}{{.TimeIn}}{{else}}В пути{{end}}</td>
+                {{if eq $.UserRole "admin"}}
+                    <td>
+                        <a href="/journal/{{.JournalID}}/edit" class="btn">Редактировать</a>
+                        <button onclick="deleteJournalEntry({{.JournalID}})" class="btn btn-danger">Удалить</button>
+                    </td>
+                {{end}}
+                </tr>
+            {{end}}
+        {{else}}
+            <tr>
+                <td colspan="3">Нет данных для отображения</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+
+    <style>
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+
+    <script>
+        function deleteJournalEntry(journalId) {
+            if (!confirm('Вы уверены, что хотите удалить эту запись?')) {
+                return;
+            }
+
+            fetch(`/journal/${journalId}/delete`, {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const row = document.querySelector(`tr[data-journal-id="${journalId}"]`);
+                        if (row) {
+                            row.remove();
+                        }
+
+                        alert('Запись успешно удалена');
+                    } else {
+                        return response.text().then(text => {
+                            throw new Error(text);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Не удалось удалить запись: ' + error.message);
+                });
+        }
+    </script>
+{{end}}
